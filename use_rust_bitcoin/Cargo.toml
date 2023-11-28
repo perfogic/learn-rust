@@ -1,0 +1,17 @@
+[package]
+name = "use_rust_bitcoin"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version="1.0.126", features=["derive"] }
+hex = "0.4.3"
+tiny-bip39 = "0.8.0"
+hdpath = { version="0.6.0", features=["with-bitcoin"] }
+secp256k1 = "0.20.3"
+bitcoin = "0.26.2"
+home = { version = "0.5.5" }
+dotenv = "0.15.0"
+
