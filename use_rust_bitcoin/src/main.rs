@@ -33,8 +33,6 @@ fn convert_to_vec_child_number(value: &CustomHDPath) -> Vec<ChildNumber> {
 fn main() {
     dotenv().ok();
 
-
-
     let mnemonic_str: String = std::env::var("MNEMONIC").expect("MNEMONIC does not exist");
     let mnemonic_reference: &str = &mnemonic_str;
 
