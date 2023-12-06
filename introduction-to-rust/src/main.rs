@@ -1,8 +1,10 @@
 mod string;
 mod vec;
+mod generic;
 
 use string::{print_string_with_borrow, print_string_normaly};
-use vec::{largest};
+use vec::{largest, genericLargest};
+use generic::{Point1D, Point2D};
 
 fn review_string_learner() {
     let hello_word: String = String::from("hello world");
@@ -26,10 +28,24 @@ fn review_vec() {
     let large = largest(&number_list);
 
     println!("Largest value: {}", large);
+
+    let largeGene = genericLargest(&number_list);
+
+    println!("Largest value with generic: {}", largeGene);
+}
+
+fn review_generic() {
+    let p1D: Point1D<i32> = Point1D::new(5);
+
+    println!("Point 1d: {:?} with x: {}", p1D, p1D.get());
+
+    let p2D = Point2D::new(8, 6);
+    println!("Point 2d: {:?} with distance: {}", p2D, p2D.distance_from_origin());
 }
 
 fn main() {
     // review_string_learner();
     // review_integer_float_learner();
-    review_vec();
+    // review_vec();
+    review_generic();
 }
