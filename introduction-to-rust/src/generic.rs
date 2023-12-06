@@ -16,7 +16,7 @@ impl<T> Point1D<T> {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Point2D<T> {
     x: T,
     y: T,
@@ -80,19 +80,5 @@ where
 {
     fn eq(&self, other: &Self) -> bool {
         self.calculate_sum_squared() == other.calculate_sum_squared()
-    }
-}
-
-impl<T> Copy for Point2D<T> where T: Copy { }
-
-impl<T> Clone for Point2D<T>
-where
-    T: Clone,
-{
-    fn clone(&self) -> Point2D<T> {
-        Point2D {
-            x: self.x.clone(),
-            y: self.y.clone(),
-        }
     }
 }

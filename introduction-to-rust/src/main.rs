@@ -42,7 +42,7 @@ fn review_generic() {
     let p2D = Point2D::new(8, 6);
     println!("Point 2d: {:?} with distance: {}", p2D, p2D.distance_from_origin());
 
-    let listPoints = vec![Point2D::new(8, 6), Point2D::new(3, 4)];
+    let listPoints = vec![Point2D::new(8, 6), Point2D::new(3, 4), Point2D::new(16, 18), Point2D::new(20, 5)];
     let largePoint = genericLargest(&listPoints);
     println!("Largest value with generic: {:?}", largePoint);
 }
