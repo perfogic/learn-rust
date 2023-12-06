@@ -1,1 +1,0 @@
-/home/hello/BkChain/learn-rust/introduction-to-rust/target/debug/introduction-to-rust: /home/hello/BkChain/learn-rust/introduction-to-rust/src/main.rs /home/hello/BkChain/learn-rust/introduction-to-rust/src/string.rs /home/hello/BkChain/learn-rust/introduction-to-rust/src/vec.rs
