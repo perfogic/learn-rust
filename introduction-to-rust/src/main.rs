@@ -1,5 +1,8 @@
 mod string;
+mod vec;
+
 use string::{print_string_with_borrow, print_string_normaly};
+use vec::{largest};
 
 fn review_string_learner() {
     let hello_word: String = String::from("hello world");
@@ -17,7 +20,16 @@ fn review_integer_float_learner() {
     println!("Value plus x + y = {}", i16::from(x) + y);
 }
 
+fn review_vec() {
+    let number_list = vec![1, 12, 3, 4, 15];
+
+    let large = largest(&number_list);
+
+    println!("Largest value: {}", large);
+}
+
 fn main() {
-    review_string_learner();
-    review_integer_float_learner();
+    // review_string_learner();
+    // review_integer_float_learner();
+    review_vec();
 }
