@@ -45,3 +45,17 @@ impl Initialize<VnPay> for VnPay {
         }
     }
 }
+
+pub fn return_bank(choice: u32) -> Box<dyn Bank> {
+    if choice % 2 == 0 {
+        return Box::new(Momo {
+            id: 0,
+            name: "genesis".to_string(),
+        });
+    }
+
+    Box::new(VnPay {
+        id: 0,
+        name: "genesis".to_string(),
+    })
+}

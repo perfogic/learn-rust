@@ -6,7 +6,7 @@ mod traits;
 use string::{print_string_with_borrow, print_string_normaly};
 use vec::{largest, genericLargest};
 use generic::{Point1D, Point2D};
-use traits::{Momo, VnPay, Initialize, Bank};
+use traits::{Momo, VnPay, Initialize, Bank, return_bank};
 
 fn review_string_learner() {
     let hello_word: String = String::from("hello world");
@@ -55,6 +55,10 @@ fn review_trait() {
 
     momo.print_default_balance();
     vn_pay.print_default_balance();
+
+    let bank_instance = return_bank(2);
+
+    bank_instance.print_default_balance();
 }
 
 fn main() {
