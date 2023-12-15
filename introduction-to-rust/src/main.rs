@@ -2,11 +2,13 @@ mod string;
 mod vec;
 mod generic;
 mod traits;
+mod practice;
 
 use string::{print_string_with_borrow, print_string_normaly};
 use vec::{largest, genericLargest};
 use generic::{Point1D, Point2D};
 use traits::{Momo, VnPay, Initialize, Bank, return_bank};
+use practice::practice_from_book;
 
 fn review_string_learner() {
     let hello_word: String = String::from("hello world");
@@ -66,5 +68,7 @@ fn main() {
     // review_integer_float_learner();
     // review_vec();
     // review_generic();
-    review_trait();
+    // review_trait();
+
+    practice_from_book();
 }
