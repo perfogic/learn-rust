@@ -149,11 +149,82 @@ fn practice_six() {
 
 }
 
+#[derive(Debug)]
+enum Friend {
+    HUMAN(Box<Human>),
+    NIL
+}
+
+#[derive(Debug)]
+struct Human {
+    name: String,
+    age: i8,
+    current_thought: Option<String>,
+    friend: Friend,
+}
+
+impl Human {
+    fn new(name: &str, age: i8) -> Human {
+        Human {
+            name: name.to_string(),
+            age,
+            current_thought: Option::None,
+            friend: Friend::NIL
+        }
+    }
+
+    fn with_thought(mut self, thought: &str) -> Human {
+        self.current_thought = Some(thought.to_string());
+        return self;
+    }
+
+    fn with_friend(mut self, friend: Box<Human>) -> Human {
+        self.friend = Friend::HUMAN(friend);
+        return self;
+    }
+}
+
+// Structs
+fn practice_seven() {
+    let developer = Human::new("Le Dinh Huy", 22).with_thought("I'm a smart contract developer");
+    let other_developer = Human::new("Pham Minh Dang", 22).with_thought("I'm a blockchain engineer").with_friend(Box::from(developer));
+
+    println!("{:?}", other_developer);
+}
+
+// Macros
+macro_rules! capitalize {
+    ($a: expr) => {
+        let mut v: Vec<char> = $a.chars().collect();
+        v[0] = v[0].to_uppercase().nth(0).unwrap();
+        $a = v.into_iter().collect();
+    }
+}
+
+fn practice_eight() {
+    let mut x = String::from("test");
+    capitalize!(x);
+    println!("{}", x);
+
+    let mut v: Vec<char> = x.chars().collect();
+
+    if (v[0] == 't') {
+        println!("Ok");
+    }
+    
+    if (v[0] == 'T') {
+        println!("Ok 1");
+    }
+}
+
 pub fn practice_from_book() {
     // practice_one();
     // practice_two();
     // practice_three();
     // practice_four();
     // practice_five();
-    practice_six();
+    // practice_six();
+    // practice_seven();
+    practice_eight();
+
 }
