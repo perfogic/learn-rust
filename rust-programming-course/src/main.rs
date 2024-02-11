@@ -36,4 +36,9 @@ fn main() {
     let vecs = vec![1,2,3];
     let small_vecs = vecs[1..=2].to_vec();
     println!("Vector: {:?}", small_vecs);
+
+    // for loop
+    for i in 1..3 {
+        println!("i: {i}");
+    }
 }
