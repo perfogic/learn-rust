@@ -41,4 +41,15 @@ fn main() {
     for i in 1..3 {
         println!("i: {i}");
     }
+
+    // Remove warning for unusable value
+    let _x = [1,3];
+
+    // static and constant
+    static DESTINATION: &str = "destination";
+
+    let x = DESTINATION;
+    let mut y = DESTINATION;
+    y = "CARGO";
+    println!("{} - {}", x, y);
 }
