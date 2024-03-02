@@ -1,0 +1,1 @@
+/media/lenovo/DATABOX/Developer/learn-rust/rust-programming-course/1\ -\ Flexibility\ and\ Abstraction\ with\ Generics\ and\ Traits/target/debug/flexibility_and_abstraction_with_generics_and_traits: /media/lenovo/DATABOX/Developer/learn-rust/rust-programming-course/1\ -\ Flexibility\ and\ Abstraction\ with\ Generics\ and\ Traits/src/main.rs
