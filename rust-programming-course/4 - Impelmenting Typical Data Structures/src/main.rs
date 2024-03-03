@@ -1,6 +1,5 @@
-// -------------------------------------------
-// 		Doubly Link List (Part 2)
-// -------------------------------------------
+//Problem 1: Add the method add_back() to the implementation of doubly linked list below. 
+// The method should add the element at the back or at the end of the linked list.    
 
 use std::{cell::RefCell, rc::Rc};
 #[derive(Debug)]
@@ -43,33 +42,23 @@ impl Doubly_Linklist {
         }
     }
 
-    // Case: 1
-    // -----------------------
-    //         Head        Tail
-    // None <-- 1 --> 2 --> 3 --> None
-    // None     1 <-- 2 <-- 3     None
-    // -----------------------
+    fn add_back(&mut self, element: i32) {
+        /* Put your Code Here*/
+        let new_tail = Node::new(element);
 
-    // Case: 1 (After Removal)
-    // -----------------------
-    //       Head  Tail
-    // None <-- 2 --> 3 --> None
-    // None     2 <-- 3     None
-    // -----------------------
-
-    // Case: 2
-    // -----------------------
-    //       Head
-    //       Tail
-    // None <-- 1 --> None
-    // -----------------------
-
-    // Case: 2 (After Removal)
-    // -----------------------
-    //       Head = None
-    //       Tail = None
-    // -----------------------
-
+        match self.tail.take() {
+            Some(old_tail) => {
+                old_tail.borrow_mut().next = Some(new_tail.clone());
+                new_tail.borrow_mut().prev = Some(old_tail.clone());
+                self.tail = Some(new_tail);
+            },
+            None => {
+                self.tail = Some(new_tail.clone());
+                self.head = Some(new_tail);
+            },
+        }
+    }
+    
     fn remove(&mut self) -> Option<i32> {
         if self.head.is_none() {
             println!("List is empty so we can not remove");
@@ -120,8 +109,7 @@ fn main() {
     list1.add(34);
     list1.add(36);
     list1.print();
-
-    list1.remove();
-    println!("After Removal");
+    list1.add_back(1);
+    list1.add_back(2);
     list1.print();
 }
