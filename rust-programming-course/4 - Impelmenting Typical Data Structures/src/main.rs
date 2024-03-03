@@ -1,23 +1,24 @@
-//Problem 2: Add the method remove_back() to the implementation of doubly linked list below.
-// The method should remove the element at the back or at the end of the linked list.
+//Problem 3: Change the code below so that the element part of the node is a generic rather than 
+// concrete i32 value 
+// Solution: 
 
 use std::{cell::RefCell, rc::Rc};
 #[derive(Debug)]
-struct Doubly_Linklist {
-    head: pointer,
-    tail: pointer,
+struct Doubly_Linklist<T> {
+    head: pointer<T>,
+    tail: pointer<T>,
 }
 
 #[derive(Debug)]
-struct Node {
-    element: i32,
-    next: pointer,
-    prev: pointer,
+struct Node<T> {
+    element: T,
+    next: pointer<T>,
+    prev: pointer<T>,
 }
 
-type pointer = Option<Rc<RefCell<Node>>>;
+type pointer<T> = Option<Rc<RefCell<Node<T>>>>;
 
-impl Doubly_Linklist {
+impl<T: std::fmt::Debug + std::marker::Copy + std::fmt::Display> Doubly_Linklist<T> {
     fn new() -> Self {
         Doubly_Linklist {
             head: None,
@@ -25,7 +26,7 @@ impl Doubly_Linklist {
         }
     }
 
-    fn add(&mut self, element: i32) {
+    fn add(&mut self, element: T) {
         let new_head = Node::new(element);
 
         match self.head.take() {
@@ -42,7 +43,7 @@ impl Doubly_Linklist {
         }
     }
 
-    fn add_back(&mut self, element: i32) {
+    fn add_back(&mut self, element: T) {
         let new_tail = Node::new(element);
         match self.tail.take() {
             Some(old_tail) => {
@@ -56,14 +57,13 @@ impl Doubly_Linklist {
             }
         }
     }
-
-    fn remove(&mut self) -> Option<i32> {
+    fn remove(&mut self) -> Option<T> {
         if self.head.is_none() {
             println!("List is empty so we can not remove");
             None
         } else {
             let removed_val = self.head.as_ref().unwrap().borrow().element;
-            let _ = self.head
+            self.head
                 .take()
                 .map(|old_head| match old_head.borrow_mut().next.take() {
                     Some(new_head) => {
@@ -82,23 +82,23 @@ impl Doubly_Linklist {
     }
 
     fn remove_back(&mut self) {
-        /*Add Code Here */
         if self.tail.is_none() {
-            println!("List is empty");
+            println!("list is emtpy so we can not remove");
         } else {
-            let _ = self.tail.take().map(|old_tail| {
-                match old_tail.borrow_mut().prev.take() {
-                    Some(previous_tail) => {
-                        previous_tail.borrow_mut().next = None;
-                        self.tail = Some(previous_tail);
+            self.tail
+                .take()
+                .map(|old_tail| match old_tail.borrow_mut().prev.take() {
+                    Some(new_tail) => {
+                        new_tail.borrow_mut().next.take();
+                        self.tail = Some(new_tail);
                         self.tail.clone()
-                    },
+                    }
                     None => {
-                        self.head = None;
+                        self.head.take();
+                        println!("List is empty after removal");
                         None
-                    },
-                }
-            });
+                    }
+                });
         }
     }
 
@@ -111,8 +111,8 @@ impl Doubly_Linklist {
     }
 }
 
-impl Node {
-    fn new(element: i32) -> Rc<RefCell<Node>> {
+impl<T> Node<T> {
+    fn new(element: T) -> Rc<RefCell<Node<T>>> {
         Rc::new(RefCell::new(Node {
             element: element,
             next: None,
@@ -128,15 +128,9 @@ fn main() {
     list1.add(34);
     list1.add(36);
     list1.print();
+
     println!("After removing the elements from the back/end");
     list1.remove_back();
     list1.remove_back();
     list1.print();
-
-    let mut x = Some(2);
-    let y = x.take().map(|val| {
-        x = Some(val + 3);
-        2
-    });
-    println!("{:?} {:?}", x, y);
 }
