@@ -95,7 +95,6 @@ impl Doubly_Linklist {
                     },
                     None => {
                         self.head = None;
-                        self.tail = None;
                         None
                     },
                 }
