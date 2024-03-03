@@ -1,3 +1,7 @@
+//Problem 1: Implement a peek method on the Linklist.
+// The signature of the function is given in the code below.
+// This method will return the head value if it exist.
+
 #[derive(Debug)]
 struct Linklist {
     head: pointer,
@@ -16,24 +20,6 @@ impl Linklist {
     }
 
     fn add(&mut self, element: i32) {
-        // match self.head {
-        //     None => {
-        //         let new_node = Some(Box::new(Node {
-        //             element: element,
-        //             next: None,
-        //         }));
-        //         self.head = new_node;
-        //     }
-        //     Some(previous_head) => {
-        //         let new_node = Some(Box::new(Node {
-        //             element: element,
-        //             next: Some(previous_head),
-        //         }));
-        //         self.head = new_node;
-        //     }
-        // }
-
-        // fn take<T>(dest: &mut T) -> T
         let previous_head = self.head.take();
         let new_head = Some(Box::new(Node {
             element: element,
@@ -52,6 +38,14 @@ impl Linklist {
         }
     }
 
+    fn peek(&self) -> Option<i32> {
+        /* Your code here */
+        if let Some(node_data) = &self.head {
+            return Some(node_data.element);
+        }
+        None
+    }
+
     fn print(&self) {
         let mut list_traversal = &self.head;
         while !list_traversal.is_none() {
@@ -68,7 +62,5 @@ fn main() {
     list.add(15);
     list.add(20);
 
-    println!("List: {:?}", list);
-    list.print();
-    println!("{}", list.remove().unwrap());
+    println!("{:?}", list.peek());
 }
