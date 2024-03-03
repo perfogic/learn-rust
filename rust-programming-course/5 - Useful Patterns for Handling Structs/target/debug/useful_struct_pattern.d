@@ -1,0 +1,1 @@
+/Users/minhdangpham/Desktop/Workspace/learn-rust/rust-programming-course/5\ -\ Useful\ Patterns\ for\ Handling\ Structs/target/debug/useful_struct_pattern: /Users/minhdangpham/Desktop/Workspace/learn-rust/rust-programming-course/5\ -\ Useful\ Patterns\ for\ Handling\ Structs/src/main.rs
