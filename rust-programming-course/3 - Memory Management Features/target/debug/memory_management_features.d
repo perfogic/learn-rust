@@ -1,0 +1,1 @@
+/Users/minhdangpham/Desktop/Workspace/learn-rust/rust-programming-course/3\ -\ Memory\ Management\ Features/target/debug/memory_management_features: /Users/minhdangpham/Desktop/Workspace/learn-rust/rust-programming-course/3\ -\ Memory\ Management\ Features/src/main.rs
