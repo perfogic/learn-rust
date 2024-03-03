@@ -90,7 +90,7 @@ impl Doubly_Linklist {
                 match old_tail.borrow_mut().prev.take() {
                     Some(previous_tail) => {
                         previous_tail.borrow_mut().next = None;
-                        self.tail = Some(previous_tail.clone());
+                        self.tail = Some(previous_tail);
                         self.tail.clone()
                     },
                     None => {
