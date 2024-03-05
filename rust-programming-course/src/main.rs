@@ -47,37 +47,62 @@
 //     test_me(5);
 // }
 
-macro_rules! string_concat {
-    () => {
-        String::new()
+// NEW SECTION
+// macro_rules! string_concat {
+//     () => {
+//         String::new()
+//     };
+
+//     ($some_str: expr) => {{
+//         let mut temp_str = String::new();
+//         temp_str.push_str($some_str);
+//         temp_str
+//     }};
+
+//     ($some_s1: expr, $some_s2: expr) => {{
+//         let mut temp_str = String::new();
+//         temp_str.push_str($some_s1);
+//         temp_str.push_str($some_s2);
+//         temp_str
+//     }};
+
+//     // Repeated pattern, *: 0 or more, +: 1 or more, ?: 0 or 1
+//     ($($some_str: expr), *) => {{
+//         let mut temp_str = String::new();
+//         $(temp_str.push_str($some_str);)*
+//         temp_str
+//     }};
+// }
+
+// // Repeating patterns
+// fn main() {
+//     let str_null = string_concat!();
+//     let str_single = string_concat!("Fish");
+//     let str_repeat = string_concat!("Fish", "Cat", "Bulk");
+//     println!("{:?}", str_repeat);
+
+// }
+
+// NEW SECTION
+macro_rules! make_struct {
+    ($name:ident {$($field:ident: $ty:ty),*}) => {
+        #[derive(Debug)]
+        struct $name {
+            $($field: $ty),*
+        }
     };
-
-    ($some_str: expr) => {{
-        let mut temp_str = String::new();
-        temp_str.push_str($some_str);
-        temp_str
-    }};
-
-    ($some_s1: expr, $some_s2: expr) => {{
-        let mut temp_str = String::new();
-        temp_str.push_str($some_s1);
-        temp_str.push_str($some_s2);
-        temp_str
-    }};
-
-    // Repeated pattern, *: 0 or more, +: 1 or more, ?: 0 or 1
-    ($($some_str: expr), *) => {{
-        let mut temp_str = String::new();
-        $(temp_str.push_str($some_str);)*
-        temp_str
-    }};
 }
 
-// Repeating patterns
-fn main() {
-    let str_null = string_concat!();
-    let str_single = string_concat!("Fish");
-    let str_repeat = string_concat!("Fish", "Cat", "Bulk");
-    println!("{:?}", str_repeat);
+// Sample usage 
+make_struct!(MyStruct {
+    field1: i32,
+    field2: String
+});
 
+fn main(){
+    let x = MyStruct {
+        field1: 3,
+        field2: "Dang".to_string()
+    };
+    println!("{:?}", x);
 }
