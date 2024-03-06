@@ -84,25 +84,60 @@
 // }
 
 // NEW SECTION
-macro_rules! make_struct {
-    ($name:ident {$($field:ident: $ty:ty),*}) => {
-        #[derive(Debug)]
-        struct $name {
-            $($field: $ty),*
+// macro_rules! make_struct {
+//     ($name:ident {$($field:ident: $ty:ty),*}) => {
+//         #[derive(Debug)]
+//         struct $name {
+//             $($field: $ty),*
+//         }
+//     };
+// }
+
+// // Sample usage 
+// make_struct!(MyStruct {
+//     field1: i32,
+//     field2: String
+// });
+
+// fn main(){
+//     let x = MyStruct {
+//         field1: 3,
+//         field2: "Dang".to_string()
+//     };
+//     println!("{:?}", x);
+// }
+
+// NEW SECTION
+// macro_rules! make_functions {
+//     ($($func_name:ident: $return_type:ty => $return_expr:expr),+) => {
+//         $(
+//             fn $func_name() -> $return_type {
+//                 $return_expr
+//             }
+//         )+
+//     };
+// }
+
+// make_functions!(foo: i32 => 42, bar: String => "hello world".to_owned());
+
+// fn main() {
+//     let result1 = foo();
+//     let result2 = bar();
+//     println!("foo result: {}", result1);
+//     println!("bar result: {}", result2);
+// }
+
+macro_rules! sum_macro {
+    ($($x:expr),*) => {
+        {
+            let mut sum = 0;
+            $(sum += $x;)*
+            sum
         }
     };
 }
 
-// Sample usage 
-make_struct!(MyStruct {
-    field1: i32,
-    field2: String
-});
-
-fn main(){
-    let x = MyStruct {
-        field1: 3,
-        field2: "Dang".to_string()
-    };
-    println!("{:?}", x);
+fn main() {
+    let result = sum_macro!(1, 2, 3, 4, 5);
 }
+
